@@ -79,7 +79,7 @@ app.server.on('upgrade', (request, socket, head) => {
 app.get('/api/scan-screens', (req, res) => {
     const serverRoot = path.join(__dirname, '../servers'); // Ordner mit Servern
     if (!fs.existsSync(serverRoot)) {
-        return res.status(400).json({ error: 'Server-Ordner existiert nicht.' });
+        fs.mkdirSync(serverRoot, { recursive: true }); // Erstelle den Ordner, falls er nicht existiert
     }
 
     exec('screen -ls', (error, stdout, stderr) => {
@@ -174,6 +174,31 @@ app.post('/api/manage-server', (req, res) => {
         }
         res.json({ message: stdout.trim() || 'Aktion erfolgreich.' });
     });
+});
+
+// Server hinzufügen
+app.post('/api/add-server', (req, res) => {
+    const { serverName, game, version, type } = req.body;
+
+    if (!serverName || !game || !version || !type) {
+        return res.status(400).json({ error: 'Alle Felder sind erforderlich.' });
+    }
+
+    const serverRoot = path.join(__dirname, '../servers');
+    if (!fs.existsSync(serverRoot)) {
+        fs.mkdirSync(serverRoot, { recursive: true }); // Erstelle den Ordner, falls er nicht existiert
+    }
+
+    const serverPath = path.join(serverRoot, serverName);
+    if (fs.existsSync(serverPath)) {
+        return res.status(400).json({ error: 'Ein Server mit diesem Namen existiert bereits.' });
+    }
+
+    fs.mkdirSync(serverPath); // Erstelle das Verzeichnis für den neuen Server
+    const config = { game, version, type };
+    fs.writeFileSync(path.join(serverPath, 'server-config.json'), JSON.stringify(config, null, 2));
+
+    res.json({ message: 'Server erfolgreich hinzugefügt.', server: { name: serverName, game, version, type } });
 });
 
 app.post('/api/add-server', (req, res) => {
