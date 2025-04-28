@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verbindung herstellen</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Verbindung herstellen</h1>
+    </header>
+    <main>
+        <form id="connect-form">
+            <label for="ip">IP-Adresse:</label>
+            <input type="text" id="ip" name="ip" placeholder="z.B. 192.168.1.1" required>
+
+            <label for="username">Benutzername:</label>
+            <input type="text" id="username" name="username" placeholder="z.B. root" required>
+
+            <label for="password">Passwort:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Verbinden</button>
+        </form>
+        <div id="connection-status"></div>
+        <div id="terminal-container" style="display: none;">
+            <h2>SSH-Terminal</h2>
+            <div id="terminal" style="background: black; color: white; height: 400px; overflow: auto;"></div>
+        </div>
+    </main>
+    <script src="connect.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameServer GUI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>GameServer GUI</h1>
+    </header>
+    <nav>
+        <button class="tab-button" data-tab="dashboard">Dashboard</button>
+        <button class="tab-button" data-tab="add-server">Server hinzufügen</button>
+        <button class="tab-button" data-tab="manage-servers">Server verwalten</button>
+        <a href="/connect"><button>SSH verbinden</button></a>
+    </nav>
+    <main>
+        <section id="dashboard" class="tab-content">
+            <h2>Dashboard</h2>
+            <div id="server-status">
+                <p>Server-Status wird geladen...</p>
+            </div>
+            <div id="running-screens">
+                <h3>Laufende Screens</h3>
+                <ul>
+                    <li>Screen 1</li>
+                    <li>Screen 2</li>
+                </ul>
+            </div>
+            <div id="running-servers">
+                <h3>Laufende Server</h3>
+                <ul>
+                    <li>Server 1</li>
+                    <li>Server 2</li>
+                </ul>
+            </div>
+        </section>
+        <section id="add-server" class="tab-content hidden">
+            <h2>Server hinzufügen</h2>
+            <form id="add-server-form">
+                <label for="server-name">Server-Name:</label>
+                <input type="text" id="server-name" name="server-name" required>
+
+                <label for="game">Spiel:</label>
+                <select id="game" name="game" required>
+                    <option value="minecraft">Minecraft</option>
+                    <option value="csgo">CS:GO</option>
+                    <option value="valheim">Valheim</option>
+                </select>
+
+                <label for="version">Version:</label>
+                <input type="text" id="version" name="version" required>
+
+                <label for="type">Art:</label>
+                <select id="type" name="type" required>
+                    <option value="single">Einzelserver</option>
+                    <option value="network">Servernetzwerk</option>
+                </select>
+
+                <button type="submit">Hinzufügen</button>
+            </form>
+        </section>
+        <section id="manage-servers" class="tab-content hidden">
+            <h2>Server verwalten</h2>
+            <ul id="server-list"></ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

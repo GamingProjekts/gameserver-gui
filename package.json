@@ -1,0 +1,26 @@
+{
+  "name": "gameserver-gui",
+  "version": "1.0.0",
+  "description": "Eine einfache GUI zur Verwaltung von Game-Servern.",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "build": "echo 'Frontend-Build-Skript hier hinzufügen, falls benötigt'",
+    "test": "echo 'Test-Skripte hier hinzufügen, falls benötigt'",
+    "lint": "eslint .",
+    "frontend": "live-server frontend",
+    "setup-ssh": "npm install ssh2 ws node-pty"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-pty": "^1.0.0",
+    "ssh2": "^1.16.0",
+    "ws": "^8.18.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "live-server": "^1.2.2",
+    "nodemon": "^2.0.22"
+  }
+}
